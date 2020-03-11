@@ -2,6 +2,7 @@ apply plugin: 'maven'
 
 def mapping = [
         "pickerview": "pickerview",
+        "wheelview" : "wheelview"
 ]
 
 
@@ -38,7 +39,6 @@ afterEvaluate { project ->
                         }
                     }
                 }
-
 
 
                 pom.whenConfigured { pom ->

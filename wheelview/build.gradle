@@ -3,7 +3,6 @@ apply plugin: 'com.github.dcendents.android-maven'
 //apply plugin: 'com.novoda.bintray-release'//添加插件
 
 
-
 android {
     compileSdkVersion 26
 
@@ -23,6 +22,9 @@ android {
         abortOnError false
     }
 }
+
+apply from: '../maven_pubish.gradle'
+
 
 //allprojects {
 //    tasks.withType(Javadoc) {//兼容中文字符
