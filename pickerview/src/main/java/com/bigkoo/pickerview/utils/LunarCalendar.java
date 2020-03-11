@@ -2,8 +2,11 @@ package com.bigkoo.pickerview.utils;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  * author: Jerry on 2016/7/11 11:29.
@@ -426,4 +429,30 @@ public class LunarCalendar {
                 + (d - 1);
     }
 
+    public static List<String> getWeekArray(int year, int month, int startDay, int endDay) {
+        Log.e("getWeekArray", "year " + year + " month " + month + " startDay " + startDay + " endDay " + endDay);
+        ArrayList<String> result = new ArrayList<>();
+        Calendar calendar = Calendar.getInstance();
+        for (int i = startDay; i <= endDay; i++) {
+            calendar.set(year, month, i);
+            int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+            if (dayOfWeek == Calendar.MONDAY) {
+                result.add(i + "日(周一)");
+            } else if (dayOfWeek == Calendar.TUESDAY) {
+                result.add(i + "日(周二)");
+            } else if (dayOfWeek == Calendar.WEDNESDAY) {
+                result.add(i + "日(周三)");
+            } else if (dayOfWeek == Calendar.THURSDAY) {
+                result.add(i + "日(周四)");
+            } else if (dayOfWeek == Calendar.FRIDAY) {
+                result.add(i + "日(周五)");
+            } else if (dayOfWeek == Calendar.SATURDAY) {
+                result.add(i + "日(周六)");
+            } else {
+                result.add(i + "日(周日)");
+            }
+        }
+        return result;
+
+    }
 }

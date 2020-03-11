@@ -23,6 +23,8 @@ allprojects {
         maven {
             url 'https://maven.google.com/'
             name 'Google'
+		        maven { url LOCAL_URL }
+
         }
     }
 }

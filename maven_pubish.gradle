@@ -1,0 +1,65 @@
+apply plugin: 'maven'
+
+def mapping = [
+        "pickerview": "pickerview",
+]
+
+
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: PUBLIC_PUSH_URL) {
+                    authentication(userName: USER_NAME, password: USER_PWD)
+                }
+                pom.project {
+                    name NAME
+                    version VERSION
+                    artifactId ARTIFACTID
+                    groupId GROUPID
+                    packaging PACKAGING
+                    description DESCRIPTION
+
+
+                    developers {
+                        developer {
+                            id 'zhaocheng'
+                            name 'zhaocheng'
+                            email 'zhaocheng@abcpen.com'
+                        }
+                    }
+
+
+                    licenses {
+                        license {
+                            name 'The Apache Software License, Version 2.0'
+                            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                            distribution 'zhaocheng'
+                        }
+                    }
+                }
+
+
+
+                pom.whenConfigured { pom ->
+                    pom.dependencies.forEach {
+                        dep ->
+                            println dep.getVersion()
+                            println dep.getGroupId()
+                            if (dep.getVersion() == "unspecified" && dep.getGroupId() == rootProject.name) {
+                                println dep
+                                def pro = mapping[dep.getArtifactId()]
+                                if (pro == null) {
+                                    pro = dep.getArtifactId()
+                                }
+                                def projectData = rootProject.findProject(pro)
+                                dep.setGroupId(projectData.GROUPID)
+                                dep.setVersion(projectData.VERSION)
+                                dep.setArtifactId(projectData.ARTIFACTID)
+                            }
+                    }
+                }
+            }
+        }
+    }
+}

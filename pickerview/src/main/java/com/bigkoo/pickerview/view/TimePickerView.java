@@ -191,7 +191,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
      * 设置选中时间,默认选中当前时间
      */
     private void setTime() {
-        int year, month, day, hours, minute, seconds;
+        int year, month, day, hours, minute, seconds, dayOfWeek;
         Calendar calendar = Calendar.getInstance();
 
         if (mPickerOptions.date == null) {
@@ -202,6 +202,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
             hours = calendar.get(Calendar.HOUR_OF_DAY);
             minute = calendar.get(Calendar.MINUTE);
             seconds = calendar.get(Calendar.SECOND);
+            dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
         } else {
             year = mPickerOptions.date.get(Calendar.YEAR);
             month = mPickerOptions.date.get(Calendar.MONTH);
@@ -209,9 +210,10 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
             hours = mPickerOptions.date.get(Calendar.HOUR_OF_DAY);
             minute = mPickerOptions.date.get(Calendar.MINUTE);
             seconds = mPickerOptions.date.get(Calendar.SECOND);
+            dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
         }
 
-        wheelTime.setPicker(year, month, day, hours, minute, seconds);
+        wheelTime.setPicker(year, month, day, dayOfWeek, hours, minute, seconds);
     }
 
 
@@ -258,7 +260,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
      */
     public void setLunarCalendar(boolean lunar) {
         try {
-            int year, month, day, hours, minute, seconds;
+            int year, month, day, dayOfWeek, hours, minute, seconds;
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(WheelTime.dateFormat.parse(wheelTime.getTime()));
             year = calendar.get(Calendar.YEAR);
@@ -267,11 +269,12 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
             hours = calendar.get(Calendar.HOUR_OF_DAY);
             minute = calendar.get(Calendar.MINUTE);
             seconds = calendar.get(Calendar.SECOND);
+            dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 
             wheelTime.setLunarMode(lunar);
             wheelTime.setLabels(mPickerOptions.label_year, mPickerOptions.label_month, mPickerOptions.label_day,
                     mPickerOptions.label_hours, mPickerOptions.label_minutes, mPickerOptions.label_seconds);
-            wheelTime.setPicker(year, month, day, hours, minute, seconds);
+            wheelTime.setPicker(year, month, day, dayOfWeek, hours, minute, seconds);
         } catch (ParseException e) {
             e.printStackTrace();
         }
