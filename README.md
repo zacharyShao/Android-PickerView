@@ -91,14 +91,14 @@
 
 #### 1.添加Jcenter仓库 Gradle依赖：
 ```java
-compile 'com.contrarywind:Android-PickerView:4.1.9'
+compile 'com.abcpen:Android-PickerView:4.1.9'
 ```
 或者
 
 #### Maven
 ```
 <dependency>
-<groupId>com.contrarywind</groupId>
+<groupId>com.abcpen</groupId>
 <artifactId>Android-PickerView</artifactId>
 <version>4.1.9</version>
 <type>pom</type>
@@ -268,14 +268,14 @@ pvOptions = new  OptionsPickerBuilder(this, new OptionsPickerView.OnOptionsSelec
 #### 6.若只需要WheelView基础控件自行扩展实现逻辑，可直接添加基础控件库，Gradle 依赖：
  
 ```java
-compile 'com.contrarywind:wheelview:4.1.0'
+compile 'com.abcpen:wheelview:4.1.0'
 ```
 
 #### WheelView 使用代码示例：
 
 xml布局：
 ```xml
- <com.contrarywind.view.WheelView
+ <com.abcpen.wheel.view.WheelView
             android:id="@+id/wheelview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
